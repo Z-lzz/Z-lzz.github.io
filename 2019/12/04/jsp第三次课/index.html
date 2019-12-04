@@ -6,16 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>jsp第二次课 | Hexo</title>
+  <title>jsp第三次课 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#这是jsp第二次课 Servlet：1. 概念 2. 步骤 3. 执行原理 4. 生命周期 5. Servlet3.0 注解配置 6. Servlet的体系结构     7. Servlet相关配置 * 概念：运行在服务器端的小程序     * Servlet就是一个接口，定义了Java类被浏览器访问到(tomcat识别)的规则。     * 将来我们自定义一个类，实现Servlet接口，复写方">
+  <meta name="description" content="#这是jsp第三次课 Request：1. request对象和response对象的原理     1. request和response对象是由服务器创建的。我们来使用它们     2. request对象是来获取请求消息，response对象是来设置响应消息  2. request对象继承体系结构：         ServletRequest        --    接口">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jsp第二次课">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;03&#x2F;jsp%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AF%BE&#x2F;index.html">
+<meta property="og:title" content="jsp第三次课">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;04&#x2F;jsp%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AF%BE&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="#这是jsp第二次课 Servlet：1. 概念 2. 步骤 3. 执行原理 4. 生命周期 5. Servlet3.0 注解配置 6. Servlet的体系结构     7. Servlet相关配置 * 概念：运行在服务器端的小程序     * Servlet就是一个接口，定义了Java类被浏览器访问到(tomcat识别)的规则。     * 将来我们自定义一个类，实现Servlet接口，复写方">
+<meta property="og:description" content="#这是jsp第三次课 Request：1. request对象和response对象的原理     1. request和response对象是由服务器创建的。我们来使用它们     2. request对象是来获取请求消息，response对象是来设置响应消息  2. request对象继承体系结构：         ServletRequest        --    接口">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-03T08:50:28.377Z">
+<meta property="og:updated_time" content="2019-12-04T12:52:48.143Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -152,191 +152,222 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jsp第二次课" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-jsp第三次课" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      jsp第二次课
+      jsp第三次课
     </h1>
   
 
         
-        <a href="/2019/12/03/jsp%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AF%BE/" class="archive-article-date">
-  	<time datetime="2019-12-03T08:44:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-03</time>
+        <a href="/2019/12/04/jsp%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AF%BE/" class="archive-article-date">
+  	<time datetime="2019-12-04T12:50:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#这是jsp第二次课</p>
-<h2 id="Servlet："><a href="#Servlet：" class="headerlink" title="Servlet："></a>Servlet：</h2><pre><code>1. 概念
-2. 步骤
-3. 执行原理
-4. 生命周期
-5. Servlet3.0 注解配置
-6. Servlet的体系结构    
-7. Servlet相关配置
-* 概念：运行在服务器端的小程序
-    * Servlet就是一个接口，定义了Java类被浏览器访问到(tomcat识别)的规则。
-    * 将来我们自定义一个类，实现Servlet接口，复写方法。
-* 快速入门：
-    1. 创建JavaEE项目
-    2. 定义一个类，实现Servlet接口
-        * public class ServletDemo1 implements Servlet
-    3. 实现接口中的抽象方法
-    4. 配置Servlet
-         在web.xml中配置：
-        &lt;!--配置Servlet --&gt;
-        &lt;servlet&gt;
-            &lt;servlet-name&gt;demo1&lt;/servlet-name&gt;
-            &lt;servlet-class&gt;cn.itcast.web.servlet.ServletDemo1&lt;/servlet-class&gt;
-        &lt;/servlet&gt;
+        <p>#这是jsp第三次课</p>
+<h1 id="Request："><a href="#Request：" class="headerlink" title="Request："></a>Request：</h1><pre><code>1. request对象和response对象的原理
+    1. request和response对象是由服务器创建的。我们来使用它们
+    2. request对象是来获取请求消息，response对象是来设置响应消息
 
-        &lt;servlet-mapping&gt;
-            &lt;servlet-name&gt;demo1&lt;/servlet-name&gt;
-            &lt;url-pattern&gt;/demo1&lt;/url-pattern&gt;
-        &lt;/servlet-mapping&gt;
-* 执行原理：
-    1. 当服务器接受到客户端浏览器的请求后，会解析请求URL路径，获取访问的Servlet的资源路径
-    2. 查找web.xml文件，是否有对应的&lt;url-pattern&gt;标签体内容。
-    3. 如果有，则在找到对应的&lt;servlet-class&gt;全类名
-    4. tomcat会将字节码文件加载进内存，并且创建其对象
-    5. 调用其方法
-* Servlet中的生命周期方法：
-    1. 被创建：执行init方法，只执行一次
-        * Servlet什么时候被创建？
-            * 默认情况下，第一次被访问时，Servlet被创建
-            * 可以配置执行Servlet的创建时机。
-                * 在&lt;servlet&gt;标签下配置
-                    1. 第一次被访问时，创建
-                        * &lt;load-on-startup&gt;的值为负数
-                    2. 在服务器启动时，创建
-                        * &lt;load-on-startup&gt;的值为0或正整数
+2. request对象继承体系结构：    
+    ServletRequest        --    接口
+        |    继承
+    HttpServletRequest    -- 接口
+        |    实现
+    org.apache.catalina.connector.RequestFacade 类(tomcat)
+
+3. request功能：
+    1. 获取请求消息数据
+        1. 获取请求行数据
+            * GET /day14/demo1?name=zhangsan HTTP/1.1
+            * 方法：
+                1. 获取请求方式 ：GET
+                    * String getMethod()  
+                2. (*)获取虚拟目录：/day14
+                    * String getContextPath()
+                3. 获取Servlet路径: /demo1
+                    * String getServletPath()
+                4. 获取get方式请求参数：name=zhangsan
+                    * String getQueryString()
+                5. (*)获取请求URI：/day14/demo1
+                    * String getRequestURI():        /day14/demo1
+                    * StringBuffer getRequestURL()  :http://localhost/day14/demo1
+
+                    * URL:统一资源定位符 ： http://localhost/day14/demo1    中华人民共和国
+                    * URI：统一资源标识符 : /day14/demo1                    共和国
+
+                6. 获取协议及版本：HTTP/1.1
+                    * String getProtocol()
+
+                7. 获取客户机的IP地址：
+                    * String getRemoteAddr()
+
+        2. 获取请求头数据
+            * 方法：
+                * (*)String getHeader(String name):通过请求头的名称获取请求头的值
+                * Enumeration&lt;String&gt; getHeaderNames():获取所有的请求头名称
+
+        3. 获取请求体数据:
+            * 请求体：只有POST请求方式，才有请求体，在请求体中封装了POST请求的请求参数
+            * 步骤：
+                1. 获取流对象
+                    *  BufferedReader getReader()：获取字符输入流，只能操作字符数据
+                    *  ServletInputStream getInputStream()：获取字节输入流，可以操作所有类型数据
+                        * 在文件上传知识点后讲解
+
+                2. 再从流对象中拿数据
 
 
-        * Servlet的init方法，只执行一次，说明一个Servlet在内存中只存在一个对象，Servlet是单例的
-            * 多个用户同时访问时，可能存在线程安全问题。
-            * 解决：尽量不要在Servlet中定义成员变量。即使定义了成员变量，也不要对修改值
+    2. 其他功能：
+        1. 获取请求参数通用方式：不论get还是post请求方式都可以使用下列方法来获取请求参数
+            1. String getParameter(String name):根据参数名称获取参数值    username=zs&amp;password=123
+            2. String[] getParameterValues(String name):根据参数名称获取参数值的数组  hobby=xx&amp;hobby=game
+            3. Enumeration&lt;String&gt; getParameterNames():获取所有请求的参数名称
+            4. Map&lt;String,String[]&gt; getParameterMap():获取所有参数的map集合
 
-    2. 提供服务：执行service方法，执行多次
-        * 每次访问Servlet时，Service方法都会被调用一次。
-    3. 被销毁：执行destroy方法，只执行一次
-        * Servlet被销毁时执行。服务器关闭时，Servlet被销毁
-        * 只有服务器正常关闭时，才会执行destroy方法。
-        * destroy方法在Servlet被销毁之前执行，一般用于释放资源
-* Servlet3.0：
-    * 好处：
-        * 支持注解配置。可以不需要web.xml了。
-    * 步骤：
-        1. 创建JavaEE项目，选择Servlet的版本3.0以上，可以不创建web.xml
-        2. 定义一个类，实现Servlet接口
-        3. 复写方法
-        4. 在类上使用@WebServlet注解，进行配置
-            * @WebServlet(&quot;资源路径&quot;)
-            @Target({ElementType.TYPE})
-            @Retention(RetentionPolicy.RUNTIME)
-            @Documented
-            public @interface WebServlet {
-                String name() default &quot;&quot;;//相当于&lt;Servlet-name&gt;
+            * 中文乱码问题：
+                * get方式：tomcat 8 已经将get方式乱码问题解决了
+                * post方式：会乱码
+                    * 解决：在获取参数前，设置request的编码request.setCharacterEncoding(&quot;utf-8&quot;);
 
-                String[] value() default {};//代表urlPatterns()属性配置
 
-                String[] urlPatterns() default {};//相当于&lt;url-pattern&gt;
+        2. 请求转发：一种在服务器内部的资源跳转方式
+            1. 步骤：
+                1. 通过request对象获取请求转发器对象：RequestDispatcher getRequestDispatcher(String path)
+                2. 使用RequestDispatcher对象来进行转发：forward(ServletRequest request, ServletResponse response) 
 
-                int loadOnStartup() default -1;//相当于&lt;load-on-startup&gt;
+            2. 特点：
+                1. 浏览器地址栏路径不发生变化
+                2. 只能转发到当前服务器内部资源中。
+                3. 转发是一次请求
 
-                WebInitParam[] initParams() default {};
 
-                boolean asyncSupported() default false;
+        3. 共享数据：
+            * 域对象：一个有作用范围的对象，可以在范围内共享数据
+            * request域：代表一次请求的范围，一般用于请求转发的多个资源中共享数据
+            * 方法：
+                1. void setAttribute(String name,Object obj):存储数据
+                2. Object getAttitude(String name):通过键获取值
+                3. void removeAttribute(String name):通过键移除键值对
 
-                String smallIcon() default &quot;&quot;;
+        4. 获取ServletContext：
+            * ServletContext getServletContext()</code></pre><h1 id="Response对象"><a href="#Response对象" class="headerlink" title="Response对象"></a>Response对象</h1><pre><code>* 功能：设置响应消息
+    1. 设置响应行
+        1. 格式：HTTP/1.1 200 ok
+        2. 设置状态码：setStatus(int sc) 
+    2. 设置响应头：setHeader(String name, String value) 
 
-                String largeIcon() default &quot;&quot;;
+    3. 设置响应体：
+        * 使用步骤：
+            1. 获取输出流
+                * 字符输出流：PrintWriter getWriter()
 
-                String description() default &quot;&quot;;
+                * 字节输出流：ServletOutputStream getOutputStream()
 
-                String displayName() default &quot;&quot;;
-            }
+            2. 使用输出流，将数据输出到客户端浏览器
+* 案例：
+    1. 完成重定向
+        * 重定向：资源跳转的方式
+        * 代码实现：
+            //1. 设置状态码为302
+            response.setStatus(302);
+            //2.设置响应头location
+            response.setHeader(&quot;location&quot;,&quot;/day15/responseDemo2&quot;);
 
-* Servlet的体系结构    
-    Servlet -- 接口
-        |
-    GenericServlet -- 抽象类
-        |
-    HttpServlet  -- 抽象类
 
-    * GenericServlet：将Servlet接口中其他的方法做了默认空实现，只将service()方法作为抽象
-        * 将来定义Servlet类时，可以继承GenericServlet，实现service()方法即可
+            //简单的重定向方法
+            response.sendRedirect(&quot;/day15/responseDemo2&quot;);
 
-    * HttpServlet：对http协议的一种封装，简化操作
-        1. 定义类继承HttpServlet
-        2. 复写doGet/doPost方法
+        * 重定向的特点:redirect
+            1. 地址栏发生变化
+            2. 重定向可以访问其他站点(服务器)的资源
+            3. 重定向是两次请求。不能使用request对象来共享数据
+        * 转发的特点：forward
+            1. 转发地址栏路径不变
+            2. 转发只能访问当前服务器下的资源
+            3. 转发是一次请求，可以使用request对象来共享数据
 
-* Servlet相关配置
-    1. urlpartten:Servlet访问路径
-        1. 一个Servlet可以定义多个访问路径 ： @WebServlet({&quot;/d4&quot;,&quot;/dd4&quot;,&quot;/ddd4&quot;})
-        2. 路径定义规则：
-            1. /xxx：路径匹配
-            2. /xxx/xxx:多层路径，目录结构
-            3. *.do：扩展名匹配</code></pre><h2 id="HTTP："><a href="#HTTP：" class="headerlink" title="HTTP："></a>HTTP：</h2><pre><code>* 概念：Hyper Text Transfer Protocol 超文本传输协议
-    * 传输协议：定义了，客户端和服务器端通信时，发送数据的格式
-    * 特点：
-        1. 基于TCP/IP的高级协议
-        2. 默认端口号:80
-        3. 基于请求/响应模型的:一次请求对应一次响应
-        4. 无状态的：每次请求之间相互独立，不能交互数据
-    * 历史版本：
-        * 1.0：每一次请求响应都会建立新的连接
-        * 1.1：复用连接
-* 请求消息数据格式
-    1. 请求行
-        请求方式 请求url 请求协议/版本
-        GET /login.html    HTTP/1.1
+        * forward 和  redirect 区别
 
-        * 请求方式：
-            * HTTP协议有7中请求方式，常用的有2种
-                * GET：
-                    1. 请求参数在请求行中，在url后。
-                    2. 请求的url长度有限制的
-                    3. 不太安全
-                * POST：
-                    1. 请求参数在请求体中
-                    2. 请求的url长度没有限制的
-                    3. 相对安全
-    2. 请求头：客户端浏览器告诉服务器一些信息
-        请求头名称: 请求头值
-        * 常见的请求头：
-            1. User-Agent：浏览器告诉服务器，我访问你使用的浏览器版本信息
-                * 可以在服务器端获取该头的信息，解决浏览器的兼容性问题
+        * 路径写法：
+            1. 路径分类
+                1. 相对路径：通过相对路径不可以确定唯一资源
+                    * 如：./index.html
+                    * 不以/开头，以.开头路径
 
-            2. Referer：http://localhost/login.html
-                * 告诉服务器，我(当前请求)从哪里来？
-                    * 作用：
-                        1. 防盗链：
-                        2. 统计工作：
-    3. 请求空行
-        空行，就是用于分割POST请求的请求头，和请求体的。
-    4. 请求体(正文)：
-        * 封装POST请求消息的请求参数的
+                    * 规则：找到当前资源和目标资源之间的相对位置关系
+                        * ./：当前目录
+                        * ../:后退一级目录
+                2. 绝对路径：通过绝对路径可以确定唯一资源
+                    * 如：http://localhost/day15/responseDemo2        /day15/responseDemo2
+                    * 以/开头的路径
 
-    * 字符串格式：
-        POST /login.html    HTTP/1.1
-        Host: localhost
-        User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
-        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-        Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
-        Accept-Encoding: gzip, deflate
-        Referer: http://localhost/login.html
-        Connection: keep-alive
-        Upgrade-Insecure-Requests: 1
+                    * 规则：判断定义的路径是给谁用的？判断请求将来从哪儿发出
+                        * 给客户端浏览器使用：需要加虚拟目录(项目的访问路径)
+                            * 建议虚拟目录动态获取：request.getContextPath()
+                            * &lt;a&gt; , &lt;form&gt; 重定向...
+                        * 给服务器使用：不需要加虚拟目录
+                            * 转发路径
 
-        username=zhangsan    
 
-* 响应消息数据格式</code></pre>
+
+
+    2. 服务器输出字符数据到浏览器
+        * 步骤：
+            1. 获取字符输出流
+            2. 输出数据
+
+        * 注意：
+            * 乱码问题：
+                1. PrintWriter pw = response.getWriter();获取的流的默认编码是ISO-8859-1
+                2. 设置该流的默认编码
+                3. 告诉浏览器响应体使用的编码
+
+                //简单的形式，设置编码，是在获取流之前设置
+                response.setContentType(&quot;text/html;charset=utf-8&quot;);
+    3. 服务器输出字节数据到浏览器
+        * 步骤：
+            1. 获取字节输出流
+            2. 输出数据
+
+    4. 验证码
+        1. 本质：图片
+        2. 目的：防止恶意表单注册</code></pre><h1 id="ServletContext对象："><a href="#ServletContext对象：" class="headerlink" title="ServletContext对象："></a>ServletContext对象：</h1><pre><code>1. 概念：代表整个web应用，可以和程序的容器(服务器)来通信
+2. 获取：
+    1. 通过request对象获取
+        request.getServletContext();
+    2. 通过HttpServlet获取
+        this.getServletContext();
+3. 功能：
+    1. 获取MIME类型：
+        * MIME类型:在互联网通信过程中定义的一种文件数据类型
+            * 格式： 大类型/小类型   text/html        image/jpeg
+
+        * 获取：String getMimeType(String file)  
+    2. 域对象：共享数据
+        1. setAttribute(String name,Object value)
+        2. getAttribute(String name)
+        3. removeAttribute(String name)
+
+        * ServletContext对象范围：所有用户所有请求的数据
+    3. 获取文件的真实(服务器)路径
+        1. 方法：String getRealPath(String path)  
+             String b = context.getRealPath(&quot;/b.txt&quot;);//web目录下资源访问
+             System.out.println(b);
+
+            String c = context.getRealPath(&quot;/WEB-INF/c.txt&quot;);//WEB-INF目录下的资源访问
+            System.out.println(c);
+
+            String a = context.getRealPath(&quot;/WEB-INF/classes/a.txt&quot;);//src目录下的资源访问
+            System.out.println(a);</code></pre>
       
 
       
@@ -415,7 +446,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/03/jsp%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AF%BE/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/04/jsp%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AF%BE/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -429,18 +460,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/04/jsp%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AF%BE/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          jsp第三次课
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/02/jsp%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AF%BE/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jsp第一次课</div>
+    <a href="/2019/12/03/jsp%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AF%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jsp第二次课</div>
       <i class="icon-circle-right"></i>
     </a>
   

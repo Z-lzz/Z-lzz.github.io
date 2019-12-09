@@ -6,13 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>jsp第五次课 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;index.html">
+  <meta name="description" content="#这是jsp第五次课 JSP：入门学习1. 概念：     * Java Server Pages： java服务器端页面         * 可以理解为：一个特殊的页面，其中既可以指定定义html标签，又可以定义java代码         * 用于简化书写！！！   2. 原理     * JSP本质上就是一个Servlet  3. JSP的脚本：JSP定义Java代码的方式     1. &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jsp第五次课">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;jsp%E7%AC%AC%E4%BA%94%E6%AC%A1%E8%AF%BE&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#这是jsp第五次课 JSP：入门学习1. 概念：     * Java Server Pages： java服务器端页面         * 可以理解为：一个特殊的页面，其中既可以指定定义html标签，又可以定义java代码         * 用于简化书写！！！   2. 原理     * JSP本质上就是一个Servlet  3. JSP的脚本：JSP定义Java代码的方式     1. &amp;">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-09T12:13:11.807Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -149,292 +152,224 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="w-jsp第五次课" class="article article-type-w " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      jsp第五次课
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-w">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/09/jsp%E7%AC%AC%E4%BA%94%E6%AC%A1%E8%AF%BE/" class="archive-article-date">
+
+        
+        <a href="/2019/12/09/jsp%E7%AC%AC%E4%BA%94%E6%AC%A1%E8%AF%BE/" class="archive-article-date">
   	<time datetime="2019-12-09T12:11:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-09</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/09/jsp%E7%AC%AC%E4%BA%94%E6%AC%A1%E8%AF%BE/">jsp第五次课</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#这是jsp第五次课</p>
+<h1 id="JSP：入门学习"><a href="#JSP：入门学习" class="headerlink" title="JSP：入门学习"></a>JSP：入门学习</h1><pre><code>1. 概念：
+    * Java Server Pages： java服务器端页面
+        * 可以理解为：一个特殊的页面，其中既可以指定定义html标签，又可以定义java代码
+        * 用于简化书写！！！
 
-        <div class="article-info info-on-right">
-          
-          
 
+2. 原理
+    * JSP本质上就是一个Servlet
+
+3. JSP的脚本：JSP定义Java代码的方式
+    1. &lt;%  代码 %&gt;：定义的java代码，在service方法中。service方法中可以定义什么，该脚本中就可以定义什么。
+    2. &lt;%! 代码 %&gt;：定义的java代码，在jsp转换后的java类的成员位置。
+    3. &lt;%= 代码 %&gt;：定义的java代码，会输出到页面上。输出语句中可以定义什么，该脚本中就可以定义什么。
+
+
+4. JSP的内置对象：
+    * 在jsp页面中不需要获取和创建，可以直接使用的对象
+    * jsp一共有9个内置对象。
+    * 今天学习3个：
+        * request
+        * response
+        * out：字符输出流对象。可以将数据输出到页面上。和response.getWriter()类似
+            * response.getWriter()和out.write()的区别：
+                * 在tomcat服务器真正给客户端做出响应之前，会先找response缓冲区数据，再找out缓冲区数据。
+                * response.getWriter()数据输出永远在out.write()之前</code></pre><h1 id="Session：主菜"><a href="#Session：主菜" class="headerlink" title="Session：主菜"></a>Session：主菜</h1><pre><code>1. 概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。HttpSession
+2. 快速入门：
+    1. 获取HttpSession对象：
+        HttpSession session = request.getSession();
+    2. 使用HttpSession对象：
+        Object getAttribute(String name)  
+        void setAttribute(String name, Object value)
+        void removeAttribute(String name)  
+
+3. 原理
+    * Session的实现是依赖于Cookie的。
+
+
+4. 细节：
+    1. 当客户端关闭后，服务器不关闭，两次获取session是否为同一个？
+        * 默认情况下。不是。
+        * 如果需要相同，则可以创建Cookie,键为JSESSIONID，设置最大存活时间，让cookie持久化保存。
+             Cookie c = new Cookie(&quot;JSESSIONID&quot;,session.getId());
+             c.setMaxAge(60*60);
+             response.addCookie(c);
+
+    2. 客户端不关闭，服务器关闭后，两次获取的session是同一个吗？
+        * 不是同一个，但是要确保数据不丢失。tomcat自动完成以下工作
+            * session的钝化：
+                * 在服务器正常关闭之前，将session对象系列化到硬盘上
+            * session的活化：
+                * 在服务器启动后，将session文件转化为内存中的session对象即可。
+
+    3. session什么时候被销毁？
+        1. 服务器关闭
+        2. session对象调用invalidate() 。
+        3. session默认失效时间 30分钟
+            选择性配置修改    
+            &lt;session-config&gt;
+                &lt;session-timeout&gt;30&lt;/session-timeout&gt;
+            &lt;/session-config&gt;
+
+ 5. session的特点
+     1. session用于存储一次会话的多次请求的数据，存在服务器端
+     2. session可以存储任意类型，任意大小的数据
+
+    * session与Cookie的区别：
+        1. session存储数据在服务器端，Cookie在客户端
+        2. session没有数据大小限制，Cookie有
+        3. session数据安全，Cookie相对于不安全</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/09/jsp%E7%AC%AC%E4%BA%94%E6%AC%A1%E8%AF%BE/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/05/jsp%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/" class="archive-article-date">
-  	<time datetime="2019-12-05T14:01:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/05/jsp%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jsp第四次课</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/05/jsp%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/">jsp第四次课</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/04/jsp%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AF%BE/" class="archive-article-date">
-  	<time datetime="2019-12-04T12:50:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/04/jsp%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AF%BE/">jsp第三次课</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/03/jsp%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AF%BE/" class="archive-article-date">
-  	<time datetime="2019-12-03T08:44:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/03/jsp%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AF%BE/">jsp第二次课</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/02/jsp%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AF%BE/" class="archive-article-date">
-  	<time datetime="2019-12-02T13:56:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/02/jsp%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AF%BE/">jsp第一次课</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/mysql%E7%AC%AC%E5%9B%9B%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2019-12-01T02:18:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/mysql%E7%AC%AC%E5%9B%9B%E7%AB%A0/">mysql第四章</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/18/mysql%E7%AC%AC%E4%BA%8C%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2019-10-18T03:20:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/18/mysql%E7%AC%AC%E4%BA%8C%E7%AB%A0/">mysql第二章</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/18/mysql%E7%AC%AC%E4%B8%80%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2019-10-18T03:15:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/18/mysql%E7%AC%AC%E4%B8%80%E7%AB%A0/">mysql第一章</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-w">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/16/mysql%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AF%BE/" class="archive-article-date">
-  	<time datetime="2019-10-16T10:03:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/16/mysql%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AF%BE/">mysql第三次课</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/16/hello-world/" class="archive-article-date">
-  	<time datetime="2019-10-16T09:58:26.474Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/16/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -457,8 +392,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -151,6 +151,189 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-jsp第八次课" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/18/jsp%E7%AC%AC%E5%85%AB%E6%AC%A1%E8%AF%BE/">jsp第八次课</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/18/jsp%E7%AC%AC%E5%85%AB%E6%AC%A1%E8%AF%BE/" class="archive-article-date">
+  	<time datetime="2019-12-18T13:54:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#这是jsp第八次课<br>#Filter：过滤器<br>    1. 概念：<br>        * 生活中的过滤器：净水器,空气净化器，土匪、<br>        * web中的过滤器：当访问服务器的资源时，过滤器可以将请求拦截下来，完成一些特殊的功能。<br>        * 过滤器的作用：<br>            * 一般用于完成通用的操作。如：登录验证、统一编码处理、敏感字符过滤…</p>
+<pre><code>2. 快速入门：
+    1. 步骤：
+        1. 定义一个类，实现接口Filter
+        2. 复写方法
+        3. 配置拦截路径
+            1. web.xml
+            2. 注解
+    2. 代码：
+        @WebFilter(&quot;/*&quot;)//访问所有资源之前，都会执行该过滤器
+        public class FilterDemo1 implements Filter {
+            @Override
+            public void init(FilterConfig filterConfig) throws ServletException {
+
+            }
+
+            @Override
+            public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+                System.out.println(&quot;filterDemo1被执行了....&quot;);
+
+
+                //放行
+                filterChain.doFilter(servletRequest,servletResponse);
+
+            }
+
+            @Override
+            public void destroy() {
+
+            }
+        }
+
+
+3. 过滤器细节：
+    1. web.xml配置    
+        &lt;filter&gt;
+            &lt;filter-name&gt;demo1&lt;/filter-name&gt;
+            &lt;filter-class&gt;cn.itcast.web.filter.FilterDemo1&lt;/filter-class&gt;
+        &lt;/filter&gt;
+        &lt;filter-mapping&gt;
+            &lt;filter-name&gt;demo1&lt;/filter-name&gt;
+            &lt;!-- 拦截路径 --&gt;
+            &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+        &lt;/filter-mapping&gt;
+    2. 过滤器执行流程
+        1. 执行过滤器
+        2. 执行放行后的资源
+        3. 回来执行过滤器放行代码下边的代码
+    3. 过滤器生命周期方法
+        1. init:在服务器启动后，会创建Filter对象，然后调用init方法。只执行一次。用于加载资源
+        2. doFilter:每一次请求被拦截资源时，会执行。执行多次
+        3. destroy:在服务器关闭后，Filter对象被销毁。如果服务器是正常关闭，则会执行destroy方法。只执行一次。用于释放资源
+    4. 过滤器配置详解
+        * 拦截路径配置：
+            1. 具体资源路径： /index.jsp   只有访问index.jsp资源时，过滤器才会被执行
+            2. 拦截目录： /user/*    访问/user下的所有资源时，过滤器都会被执行
+            3. 后缀名拦截： *.jsp        访问所有后缀名为jsp资源时，过滤器都会被执行
+            4. 拦截所有资源：/*        访问所有资源时，过滤器都会被执行
+        * 拦截方式配置：资源被访问的方式
+            * 注解配置：
+                * 设置dispatcherTypes属性
+                    1. REQUEST：默认值。浏览器直接请求资源
+                    2. FORWARD：转发访问资源
+                    3. INCLUDE：包含访问资源
+                    4. ERROR：错误跳转资源
+                    5. ASYNC：异步访问资源
+            * web.xml配置
+                * 设置&lt;dispatcher&gt;&lt;/dispatcher&gt;标签即可
+
+    5. 过滤器链(配置多个过滤器)
+        * 执行顺序：如果有两个过滤器：过滤器1和过滤器2
+            1. 过滤器1
+            2. 过滤器2
+            3. 资源执行
+            4. 过滤器2
+            5. 过滤器1 
+
+        * 过滤器先后顺序问题：
+            1. 注解配置：按照类名的字符串比较规则比较，值小的先执行
+                * 如： AFilter 和 BFilter，AFilter就先执行了。
+            2. web.xml配置： &lt;filter-mapping&gt;谁定义在上边，谁先执行
+4. 案例：
+    1. 案例1_登录验证
+        * 需求：
+            1. 访问day17_case案例的资源。验证其是否登录
+            2. 如果登录了，则直接放行。
+            3. 如果没有登录，则跳转到登录页面，提示&quot;您尚未登录，请先登录&quot;。
+
+
+
+    2. 案例2_敏感词汇过滤
+        * 需求：
+            1. 对day17_case案例录入的数据进行敏感词汇过滤
+            2. 敏感词汇参考《敏感词汇.txt》
+            3. 如果是敏感词汇，替换为 *** 
+
+        * 分析：
+            1. 对request对象进行增强。增强获取参数相关方法
+            2. 放行。传递代理对象
+
+
+        * 增强对象的功能：
+            * 设计模式：一些通用的解决固定问题的方式
+            1. 装饰模式
+            2. 代理模式
+                * 概念：
+                    1. 真实对象：被代理的对象
+                    2. 代理对象：
+                    3. 代理模式：代理对象代理真实对象，达到增强真实对象功能的目的
+                 * 实现方式：
+                     1. 静态代理：有一个类文件描述代理模式
+                     2. 动态代理：在内存中形成代理类
+                        * 实现步骤：
+                            1. 代理对象和真实对象实现相同的接口
+                            2. 代理对象 = Proxy.newProxyInstance();
+                            3. 使用代理对象调用方法。
+                            4. 增强方法
+
+                        * 增强方式：
+                            1. 增强参数列表
+                            2. 增强返回值类型
+                            3. 增强方法体执行逻辑    </code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/18/jsp%E7%AC%AC%E5%85%AB%E6%AC%A1%E8%AF%BE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-jsp第七次课" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1438,70 +1621,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/10/18/mysql%E7%AC%AC%E4%BA%8C%E7%AB%A0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql第一章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/18/mysql%E7%AC%AC%E4%B8%80%E7%AB%A0/">mysql第一章</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/18/mysql%E7%AC%AC%E4%B8%80%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2019-10-18T03:15:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#mysql第一章<br>/*<br> Mysql第一次课<br>   0数据库的分类：<br>    关系型数据库<br>      sqlserver mysql orcale<br>    非关系型数据库nosql<br>      redis</p>
-<p>   关系型数据库：<br>   一、什么是数据库<br>   存储数据的仓库，里边是由<br>   一张一张的表组成，数据是在<br>   表里边<br>   二、什么是表<br>   表由行和列组成<br>    行称为记录<br>    列称为字段或属性<br> 三、mysql安装<br>  先安装Mysql服务器<br>    数据库与表都是在服务器<br>    上创建的<br>  再安装客户端<br>    负责连接上Mysql服务器进而对服务器进行<br>    操作比较好用的客户端有两个<br>    navicat sqlyog<br>四、sql语句的学习<br>  创建语句<br>      创建库<br>        create database 库名<br>      创建表<br>        create table 表名(<br>           字段1 数据类型 约束,<br>           字段2 数据类型 约束,<br>           字段3 数据类型<br>        )<br>      数据类型<br>       int<br>       char 字符串类型，固定长度<br>       varchar 字符串类型,可变长度<br>       float<br>       date 日期型<br>  插入语句<br>    insert into 表名(字段1,字段2,字段3)<br>        values(数据1,数据2,数据3);<br>  查询语句<br>    select 字段1,字段2,字段3 from 表名;<br>  删除语句<br>    删除库<br>      drop database 库名;<br>    删除表<br>      drop table 表名;<br>    删除表中所有的数据<br>      delete from 表名;<br>    删除表中部分数据<br>      delete from 表名 where …<br>  修改语句<br>    update 表名 set … where …<br>五、约束<br>   1、主键约束(primary key)，不能重复，非空<br>        主键的作用为，主键可以代表一条记录<br>   2、非空约束(not null)<br>   3、唯一约束(unique)不能重复，可以为null<br>           但null也不能重复<br>   4、外键约束(foreign key)<br>         外键：本张表使用的字段，为另一<br>             张表的主键,例如学生表的主键<br>             为学号。而成绩表也会用上学号<br>             ,那么成绩表的学号，就称为成绩<br>             表的外键<br>   5、默认约束(default)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/18/mysql%E7%AC%AC%E4%B8%80%E7%AB%A0/">展开全文 >></a>
         </p>
       
 
